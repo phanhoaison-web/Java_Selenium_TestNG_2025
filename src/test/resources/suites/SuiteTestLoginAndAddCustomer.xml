@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite login and add customer" verbose="1">
+    <parameter name="email" value="admin@example.com"></parameter>
+    <parameter name="password" value="123456"></parameter>
+    <parameter name="url" value="https://crm.anhtester.com/admin/authentication"></parameter>
+
+    <test name="Test login">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.sonph.baitap.Bai9_SetupTestNG.TestLogin"/>
+        </classes>
+    </test>
+
+    <test name="Test add Customer">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="com.sonph.baitap.Bai9_SetupTestNG.TestCustomer">
+                <methods>
+                    <parameter name="cusName" value="ND_JSC"/>
+                    <include name="addNewCustomer"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
