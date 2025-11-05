@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite login and add customer" verbose="1">
+    <parameter name="email" value="admin@example.com"></parameter>
+    <parameter name="password" value="123456"></parameter>
+    <parameter name="url" value="https://crm.anhtester.com/admin/authentication"></parameter>
+    <parameter name="browser" value="edge"/>
+
+    <test name="Bai 10">
+        <classes>
+            <class name="com.sonph.baitap.Bai10.TestCustomer">
+                <parameter name="cusName" value="ND_JSC"/>
+            </class>
+        </classes>
+    </test>
+</suite>

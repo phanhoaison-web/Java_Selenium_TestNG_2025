@@ -143,4 +143,6 @@ public class LocatorsCRM {
     public static String dropdownCountryC = "//button[contains(@data-id,'country')]";
     public static String inputSearchCountryC = "//button[contains(@data-id,'country')]/following-sibling::div//input[@type='search']";
     public static String firstRowCustomerTable = "//table[@id='clients']/tbody/tr[1]/td[3]/a";
+    public static String btnDeleteCustomer = "//a[normalize-space()='Delete']";
+    public static String alertDeleteCustomerSuccess = "//span[@class='alert-title' and normalize-space()='Customer deleted']";
 }
