@@ -63,7 +63,7 @@ public class LocatorsCRM {
     public static String labelContactedToday= "//label[@for='contacted_today']";
 
     public static String btnCloseAddNewLead ="//div[@class='lead-edit']//button[normalize-space()='Close']";
-    public static String btnSaveLead ="//button[@id='_task_modal' and normalize-space()='Save']";
+    public static String btnSaveLead ="//button[@id='lead-form-submit' and normalize-space()='Save']";
 
     //Xpath tương đối cách 6 - 10 rang Tasks
     public static String headerTasksSummary = "//span[contains(normalize-space(),'Tasks Summary')]";

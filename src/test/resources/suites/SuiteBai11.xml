@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite login and add new leads" verbose="1">
+    <test name="Bai 11">
+        <classes>
+            <class name="com.sonph.baitap.Bai11.ManagementLeads">
+                <methods>
+                    <parameter name="name" value="ND_LEAD"></parameter>
+                    <include name="testAddNewLead"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
