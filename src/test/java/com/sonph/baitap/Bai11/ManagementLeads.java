@@ -5,6 +5,7 @@ import com.sonph.common.LocatorsCRM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -121,4 +122,49 @@ public class ManagementLeads extends BaseTest {
 
     }
 
+    @Test(priority = 2)
+    @Parameters(value = {"name"})
+    public static void testEditNewLead(String name) throws InterruptedException {
+        driver.get(LocatorsCRM.URL);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLogin)).getText(),"Login","Login page is not displayed");
+        driver.findElement(By.xpath(LocatorsCRM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCRM.inputEmail)).sendKeys(LocatorsCRM.EMAIL);
+        driver.findElement(By.xpath(LocatorsCRM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCRM.inputPassword)).sendKeys(LocatorsCRM.PASSWORD);
+        driver.findElement(By.xpath(LocatorsCRM.btnLogin)).click();
+        Thread.sleep(3000);
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorsCRM.verifyDashboardOption)).isDisplayed(),"Dashboard option is not displayed");
+        driver.findElement(By.xpath(LocatorsCRM.menuLeads)).click();
+        driver.findElement(By.xpath(LocatorsCRM.btnLeadsSummery)).click();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLeadsSummary)).getText(),"Leads Summary","Leads page is not displayed");
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).click();
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).sendKeys(name);
+        Thread.sleep(1000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement( driver.findElement(By.xpath(LocatorsCRM.firstRowLeadsTable))).click().perform();
+        driver.findElement(By.xpath(LocatorsCRM.btnEditLead)).click();
+        Thread.sleep(1000);
+        String currentName = driver.findElement(By.xpath(LocatorsCRM.inputName)).getAttribute("value");
+        Assert.assertTrue(currentName.contains(name),"The lead name does not match the searched name");
+        driver.findElement(By.xpath(LocatorsCRM.inputName)).click();
+        driver.findElement(By.xpath(LocatorsCRM.inputName)).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.inputName)).sendKeys(name);
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.btnSaveLead)).click();
+        Thread.sleep(1000);
+        String label = driver.findElement(By.xpath("//div[@id='leadViewWrapper']//h4[normalize-space()='Lead Information']")).getText();
+        Assert.assertEquals(label,"Lead Information","Lead Information page is not displayed after edit lead");
+        driver.findElement(By.xpath(LocatorsCRM.btnCloseLead)).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).click();
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).sendKeys(name);
+        Thread.sleep(1000);
+        Assert.assertEquals( driver.findElement(By.xpath(LocatorsCRM.firstRowLeadsTable)).getText(),name);
+    }
 }

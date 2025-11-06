@@ -30,6 +30,7 @@ public class LocatorsCRM {
 
     public static String inputSearchLeads = "//div[@id='leads_filter']//input[@type='search']";
     public static String btnNewLead= "//a[contains(@href,'#') and normalize-space()='New Lead']";
+    public static String btnEditLead= "//table[@id='leads']//a[contains(@href,'https://crm.anhtester.com/admin/leads/index') and normalize-space()='Edit']";
     public static String btnLeadsSummery ="//a[contains(@href,'#') and contains(@data-title,'Leads Summary')]";
     public static String btnLeadSwitchKanbanOrList ="//a[contains(@href,'switch_kanban')]";
     //Xpath trang New Leads
@@ -64,6 +65,7 @@ public class LocatorsCRM {
 
     public static String btnCloseAddNewLead ="//div[@class='lead-edit']//button[normalize-space()='Close']";
     public static String btnSaveLead ="//button[@id='lead-form-submit' and normalize-space()='Save']";
+    public static String btnCloseLead ="//div[@id='lead-modal']//button[@class='close']";
 
     //Xpath tương đối cách 6 - 10 rang Tasks
     public static String headerTasksSummary = "//span[contains(normalize-space(),'Tasks Summary')]";
@@ -145,4 +147,7 @@ public class LocatorsCRM {
     public static String firstRowCustomerTable = "//table[@id='clients']/tbody/tr[1]/td[3]/a";
     public static String btnDeleteCustomer = "//a[normalize-space()='Delete']";
     public static String alertDeleteCustomerSuccess = "//span[@class='alert-title' and normalize-space()='Customer deleted']";
+
+
+    public static String firstRowLeadsTable = "//table[@id='leads']/tbody/tr[1]/td[3]/a";
 }
