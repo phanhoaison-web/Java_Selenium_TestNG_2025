@@ -7,7 +7,8 @@
                 <methods>
                     <parameter name="name" value="ND_LEAD"></parameter>
                     <include name="testAddNewLead"/>
-                    <include name="testEditNewLead"/>
+                    <include name="testEditLead"/>
+                    <include name="testDeleteLead"/>
                 </methods>
             </class>
         </classes>

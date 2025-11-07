@@ -2,6 +2,7 @@ package com.sonph.baitap.Bai11;
 
 import com.sonph.common.BaseTest;
 import com.sonph.common.LocatorsCRM;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -117,14 +118,14 @@ public class ManagementLeads extends BaseTest {
 
         driver.findElement(By.xpath(LocatorsCRM.btnSaveLead)).click();
         Thread.sleep(3000);
-
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.alertLeadUpdateSuccess)).getText(),"Lead added successfully.","Lead add failed");
         Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerNewLeadSuccess)).getText(),"Lead Information","Lead Information page is not displayed");
 
     }
 
     @Test(priority = 2)
     @Parameters(value = {"name"})
-    public static void testEditNewLead(String name) throws InterruptedException {
+    public static void testEditLead(String name) throws InterruptedException {
         driver.get(LocatorsCRM.URL);
         Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLogin)).getText(),"Login","Login page is not displayed");
         driver.findElement(By.xpath(LocatorsCRM.inputEmail)).clear();
@@ -144,7 +145,8 @@ public class ManagementLeads extends BaseTest {
         driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).sendKeys(name);
         Thread.sleep(1000);
         Actions actions = new Actions(driver);
-        actions.moveToElement( driver.findElement(By.xpath(LocatorsCRM.firstRowLeadsTable))).click().perform();
+        actions.moveToElement( driver.findElement(By.xpath(LocatorsCRM.firstRowLeadsTable))).perform();
+        Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCRM.btnEditLead)).click();
         Thread.sleep(1000);
         String currentName = driver.findElement(By.xpath(LocatorsCRM.inputName)).getAttribute("value");
@@ -156,6 +158,8 @@ public class ManagementLeads extends BaseTest {
         Thread.sleep(1000);
         driver.findElement(By.xpath(LocatorsCRM.btnSaveLead)).click();
         Thread.sleep(1000);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.alertLeadUpdateSuccess)).getText(),"Lead updated successfully.","Lead update failed");
+
         String label = driver.findElement(By.xpath("//div[@id='leadViewWrapper']//h4[normalize-space()='Lead Information']")).getText();
         Assert.assertEquals(label,"Lead Information","Lead Information page is not displayed after edit lead");
         driver.findElement(By.xpath(LocatorsCRM.btnCloseLead)).click();
@@ -166,5 +170,46 @@ public class ManagementLeads extends BaseTest {
         driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).sendKeys(name);
         Thread.sleep(1000);
         Assert.assertEquals( driver.findElement(By.xpath(LocatorsCRM.firstRowLeadsTable)).getText(),name);
+    }
+
+
+    @Test(priority = 3)
+    @Parameters(value = {"name"})
+    public static void testDeleteLead(String name) throws InterruptedException {
+        driver.get(LocatorsCRM.URL);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLogin)).getText(),"Login","Login page is not displayed");
+        driver.findElement(By.xpath(LocatorsCRM.inputEmail)).clear();
+        driver.findElement(By.xpath(LocatorsCRM.inputEmail)).sendKeys(LocatorsCRM.EMAIL);
+        driver.findElement(By.xpath(LocatorsCRM.inputPassword)).clear();
+        driver.findElement(By.xpath(LocatorsCRM.inputPassword)).sendKeys(LocatorsCRM.PASSWORD);
+        driver.findElement(By.xpath(LocatorsCRM.btnLogin)).click();
+        Thread.sleep(3000);
+        Assert.assertTrue(driver.findElement(By.xpath(LocatorsCRM.verifyDashboardOption)).isDisplayed(),"Dashboard option is not displayed");
+        driver.findElement(By.xpath(LocatorsCRM.menuLeads)).click();
+        driver.findElement(By.xpath(LocatorsCRM.btnLeadsSummery)).click();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLeadsSummary)).getText(),"Leads Summary","Leads page is not displayed");
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).click();
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).sendKeys(name);
+        Thread.sleep(1000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement( driver.findElement(By.xpath(LocatorsCRM.firstRowLeadsTable))).perform();
+        driver.findElement(By.xpath(LocatorsCRM.btnDeleteLead)).click();
+        Thread.sleep(1000);
+        Alert alert = driver.switchTo().alert();
+        System.out.println(alert.getText());
+        Assert.assertEquals(alert.getText(),"Are you sure you want to perform this action?");
+        alert.accept();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.alertLeadUpdateSuccess)).getText(),"Lead deleted","Lead update failed");
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).click();
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).clear();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath(LocatorsCRM.inputSearchLeads)).sendKeys(name);
+        Thread.sleep(1000);
+        String noDataText = driver.findElement(By.xpath("//table[@id='leads']//td[@class='dataTables_empty']")).getText();
+        Assert.assertEquals(noDataText,"No matching records found","Lead was not deleted successfully");
     }
 }

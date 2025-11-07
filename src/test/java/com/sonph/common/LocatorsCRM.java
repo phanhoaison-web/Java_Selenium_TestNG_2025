@@ -27,10 +27,12 @@ public class LocatorsCRM {
     public static String headerLeadsSummary = "//h4[contains(normalize-space(),'Leads Summary')]";
     public static String headerAddNewLead = "//h4[contains(normalize-space(),'Add new lead')]";
     public static String headerNewLeadSuccess = "//h4[contains(normalize-space(),'Lead Information')]";
+    public static String alertLeadUpdateSuccess = "//div[@id='alert_float_1']//span[@class='alert-title']";
 
     public static String inputSearchLeads = "//div[@id='leads_filter']//input[@type='search']";
     public static String btnNewLead= "//a[contains(@href,'#') and normalize-space()='New Lead']";
     public static String btnEditLead= "//table[@id='leads']//a[contains(@href,'https://crm.anhtester.com/admin/leads/index') and normalize-space()='Edit']";
+    public static String btnDeleteLead= "//table[@id='leads']//a[contains(@href,'https://crm.anhtester.com/admin/leads/delete') and normalize-space()='Delete']";
     public static String btnLeadsSummery ="//a[contains(@href,'#') and contains(@data-title,'Leads Summary')]";
     public static String btnLeadSwitchKanbanOrList ="//a[contains(@href,'switch_kanban')]";
     //Xpath trang New Leads
