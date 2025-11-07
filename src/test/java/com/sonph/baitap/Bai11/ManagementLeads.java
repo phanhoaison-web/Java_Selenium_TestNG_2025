@@ -13,13 +13,12 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class ManagementLeads extends BaseTest {
 
     @Test(priority = 1)
     @Parameters(value = {"name"})
-    public static void testAddNewLead(String name) throws InterruptedException {
+    public void testAddNewLead(String name) throws InterruptedException {
         driver.get(LocatorsCRM.URL);
         Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLogin)).getText(),"Login","Login page is not displayed");
         driver.findElement(By.xpath(LocatorsCRM.inputEmail)).clear();
@@ -125,7 +124,7 @@ public class ManagementLeads extends BaseTest {
 
     @Test(priority = 2)
     @Parameters(value = {"name"})
-    public static void testEditLead(String name) throws InterruptedException {
+    public void testEditLead(String name) throws InterruptedException {
         driver.get(LocatorsCRM.URL);
         Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLogin)).getText(),"Login","Login page is not displayed");
         driver.findElement(By.xpath(LocatorsCRM.inputEmail)).clear();
@@ -175,7 +174,7 @@ public class ManagementLeads extends BaseTest {
 
     @Test(priority = 3)
     @Parameters(value = {"name"})
-    public static void testDeleteLead(String name) throws InterruptedException {
+    public void testDeleteLead(String name) throws InterruptedException {
         driver.get(LocatorsCRM.URL);
         Assert.assertEquals(driver.findElement(By.xpath(LocatorsCRM.headerLogin)).getText(),"Login","Login page is not displayed");
         driver.findElement(By.xpath(LocatorsCRM.inputEmail)).clear();

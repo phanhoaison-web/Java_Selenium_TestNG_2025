@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite login and add new task" verbose="1">
+    <test name="Bai 12">
+        <classes>
+            <class name="com.sonph.baitap.Bai12.ManagementTask">
+                <methods>
+                    <parameter name="taskName" value="HNJSC"></parameter>
+                    <include name="testAddNewTask"/>
+<!--                    <include name="testEditLead"/>-->
+<!--                    <include name="testDeleteLead"/>-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -35,6 +35,7 @@ public class LocatorsCRM {
     public static String btnDeleteLead= "//table[@id='leads']//a[contains(@href,'https://crm.anhtester.com/admin/leads/delete') and normalize-space()='Delete']";
     public static String btnLeadsSummery ="//a[contains(@href,'#') and contains(@data-title,'Leads Summary')]";
     public static String btnLeadSwitchKanbanOrList ="//a[contains(@href,'switch_kanban')]";
+    public static String btnCloseLead ="//div[@id='lead-modal']//button[@class='close']";
     //Xpath trang New Leads
     public static String dropdownStatus = "//div[contains(@class,'lead-edit')]//button[contains(@data-id,'status')]";
     public static String inputSearchStatus = "//div[contains(@class,'lead-edit')]//button[contains(@data-id,'status')]/following-sibling::div//input[@type='search']";
@@ -43,7 +44,8 @@ public class LocatorsCRM {
     public static String dropdownAssigned= "//div[contains(@class,'lead-edit')]//button[contains(@data-id,'assigned')]";
     public static String inputSearchAssigned= "//div[contains(@class,'lead-edit')]//button[contains(@data-id,'assigned')]/following-sibling::div//input[@type='search']";
     public static String leadDropdownTags= "//div[@id='inputTagsWrapper']//ul/li/input[@type='text']";
-    public static String leadSelectedTags= "//div[@id='inputTagsWrapper']//ul/li[@class='ui-menu-item' and normalize-space()='Selenium']";
+    public static String leadSelectedTags= "//div[@id='inputTagsWrapper']//span[normalize-space()='%s']";
+
     public static String inputName = "//div[contains(@class,'lead-edit')]//input[@id='name']";
     public static String inputAddress = "//div[contains(@class,'lead-edit')]//textarea[@id='address']";
     public static String inputPosition = "//div[contains(@class,'lead-edit')]//input[@id='title']";
@@ -67,13 +69,13 @@ public class LocatorsCRM {
 
     public static String btnCloseAddNewLead ="//div[@class='lead-edit']//button[normalize-space()='Close']";
     public static String btnSaveLead ="//button[@id='lead-form-submit' and normalize-space()='Save']";
-    public static String btnCloseLead ="//div[@id='lead-modal']//button[@class='close']";
 
     //Xpath tương đối cách 6 - 10 rang Tasks
     public static String headerTasksSummary = "//span[contains(normalize-space(),'Tasks Summary')]";
     public static String headerAddNewTask = "//h4[contains(normalize-space(),'Add new task')]";
     public static String headerNewTaskSuccess = "//h4[contains(normalize-space(),'Task Info')]";
-
+    public static String alertNewTaskAddSuccess = "//div[@id='alert_float_1']//span[@class='alert-title']";
+    public static String btnCloseTask ="//div[@id='task-modal']//button[@class='close']";
 
     public static String inputSearchTask = "//div[@id='tasks_filter']//input[@type='search']";
     public static String btnNewTask = "//a[contains(@href,'#') and normalize-space()='New Task']";
@@ -84,9 +86,10 @@ public class LocatorsCRM {
 
     public static String taskCheckBoxPublic = "//label[@for='task_is_public']/preceding::input[@id='task_is_public']";
     public static String taskLabelPublic = "//input[@id='task_is_public']/following::label[@for='task_is_public']";
-    public static String checkBoxBillable = "//label[@for='task_is_public']/preceding::input[@id='task_is_public']";
+    public static String checkBoxBillable = "//label[@for='task_is_billable']/preceding::input[@id='task_is_billable']";
     public static String labelBillable = "//input[@id='task_is_billable']/following::label[@for='task_is_billable']";
-    public static String linkTextAttachFiles = "//i[contains(@class,'fa fa-plus')]/preceding::input[@type='file']";
+    public static String linkTextAttachFiles = "//a[@href='#' and normalize-space()='Attach Files']";
+    public static String btnChooseFile = "//input[@type='file']";
 
     public static String addMoreAttachFile = "//div[@id='new-task-attachments']/descendant::button[contains(@class,'add_more_attachments')]";
     public static String removeAttachFile = "//div[@id='new-task-attachments']/descendant::button[contains(@class,'remove_attachment')]";
@@ -96,15 +99,21 @@ public class LocatorsCRM {
     public static String inputStartDate = "//label[@for='startdate']/following::div/input[@id='startdate']";
     public static String inputDuaDate = "//label[@for='duedate']/following::div/input[@id='duedate']";
     public static String dropdownPriority = "//label[@for='priority']/following::div/button[@data-id='priority']";
-    public static String selectedPriority = "//label[@for='priority']/following::div//span[normalize-space()='Low']";
+    public static String selectedPriority = "//label[@for='priority']/following::div//span[normalize-space()='%s']";
     public static String dropdownRepeatEvery = "//label[@for='repeat_every']/following::div/button[@data-id='repeat_every']";
-    public static String selectedRepeatEvery = "//label[@for='repeat_every']/following::div//span[normalize-space()='Week']";
+    public static String selectedRepeatEvery = "//label[@for='repeat_every']/following::div//span[normalize-space()='%s']";
     public static String inputTotalCycles = "//label[@for='cycles']/following::div//input[@id='cycles']";
     public static String checkBoxInfinity = "//div[@id='cycles_wrapper']/child::div//input[@id='unlimited_cycles']";
     public static String labelInfinity = "//div[@id='cycles_wrapper']/child::div//label[@for='unlimited_cycles']";
 
     public static String dropdownRelatedTo = "//label[@for='rel_type']/following::div/button[@data-id='rel_type']";
-    public static String selectedRelatedTo = "//label[@for='rel_type']/following::div//span[normalize-space()='Project']";
+    public static String selectedRelatedTo = "//label[@for='rel_type']/following::div//span[normalize-space()='%s']";
+
+    public static String dropdownLead = "//div[@id='rel_id_select']//button[@data-id='rel_id']";
+    public static String inputLead = "//div[@id='rel_id_select']//button[@data-id='rel_id']/following-sibling::div//input[@type='search']";
+    public static String selectedLead = "//div[@id='rel_id_select']//button[@data-id='rel_id']/following-sibling::div//span[contains(text(),'%s')][1]";
+
+
     public static String dropdownAssignees = "//label[@for='assignees']/following::div/button[@data-id='assignees']";
     public static String inputSearchAssignees = "//button[@data-id='assignees']/following-sibling::div//input[@type='search']";
     public static String dropdownFollowers = "//label[contains(@for,'followers')]/following::div/button[contains(@data-id,'followers')]";
@@ -152,4 +161,5 @@ public class LocatorsCRM {
 
 
     public static String firstRowLeadsTable = "//table[@id='leads']/tbody/tr[1]/td[3]/a";
+    public static String firstRowTasksTable = "//table[@id='tasks']/tbody/tr[1]/td[3]/a";
 }
